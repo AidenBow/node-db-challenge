@@ -5,6 +5,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
   Schemes.find("projects")
     .then(projects => {
+      projects.forEach(project => {
+        return project.completed ? project.completed = "true" : project.completed = "false";
+      })
       res.status(200).json({projects})
     })
     .catch(err => {
@@ -21,5 +24,6 @@ router.post("/", (req, res) => {
       res.status(500).json({message: "server error", error: err})
     })
 })
+
 
 module.exports = router
