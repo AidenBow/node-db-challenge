@@ -1,10 +1,10 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable("tasks", table => {
-    table.increments("ID").unique();
+    table.increments("ID").primary();
     table.integer("project_id").notNullable()
       .unsigned()
-      .references('id')
+      .references('ID')
       .inTable('projects')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
