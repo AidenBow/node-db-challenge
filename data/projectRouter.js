@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   Schemes.find()
     .then(projects => {
       projects.forEach(project => {
-        return project.completed ? project.completed = "true" : project.completed = "false";
+        return project.completed ? project.completed = true : project.completed = false;
       })
       res.status(200).json({projects})
     })

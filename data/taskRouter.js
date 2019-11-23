@@ -5,6 +5,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
   Schemes.find()
     .then(tasks => {
+      tasks.forEach(task => {
+        return task.completed ? task.completed = true : task.completed = false;
+      })
       res.status(200).json({tasks})
     })
     .catch(err => {
