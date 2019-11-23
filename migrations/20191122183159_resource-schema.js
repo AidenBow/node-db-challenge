@@ -10,7 +10,7 @@ exports.up = function(knex) {
       .onUpdate('CASCADE');
     table.increments("ID").primary(['ID', 'project_id']);
     table.string("name", 64).notNullable().unique();
-    table.string("description", 128);
+    table.string("description", 255);
   })
 };
 
