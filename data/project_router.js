@@ -13,6 +13,16 @@ router.post("/", (req,res) => {
   })
 })
 
+router.post("/resources", (req,res) => {
+  scheme.addResource(req.body)
+  .then(resource => {
+    res.status(200).json(resource)
+  })
+  .catch(err => {
+    res.status(500).json({message: "server error", error:err})
+  })
+})
+
 router.get("/", (req,res) => {
   scheme.find()
   .then(projects => {
@@ -20,6 +30,28 @@ router.get("/", (req,res) => {
       return project.completed ? project.completed = true : project.completed = false;
     })
     res.status(200).json(projects)
+  })
+  .catch(err => {
+    res.status(500).json({message: "server error", error:err})
+  })
+})
+
+router.get("/resources", (req,res) => {
+  scheme.findResources()
+  .then(resources => {
+    res.status(200).json(resources)
+  })
+  .catch(err => {
+    res.status(500).json({message: "server error", error:err})
+  })
+})
+
+router.get("/:id", (req,res) => {
+  scheme.findById(req.params.id)
+  .then(project => {
+    console.log("dwad")
+    //project.completed ? project.completed = true : project.completed = false;
+    res.status(200).json(project)
   })
   .catch(err => {
     res.status(500).json({message: "server error", error:err})

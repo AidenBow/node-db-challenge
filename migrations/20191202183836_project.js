@@ -27,6 +27,7 @@ exports.up = function(knex) {
         table.string("notes", 255);
         table.bool("completed").notNullable().defaultTo(false);
       })
+      
       .createTable("project_resources", table => {
         table.integer("project_id").notNullable()
           .unsigned()
