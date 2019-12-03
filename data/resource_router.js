@@ -4,7 +4,7 @@ const router = express.Router();
 const scheme = require('./resource_model');
 
 router.post("/", (req,res) => {
-  scheme.add()
+  scheme.add(req.body)
   .then(resources => {
     res.status(200).json(resources)
   })
